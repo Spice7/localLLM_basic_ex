@@ -1,0 +1,136 @@
+.chat-input-container {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  padding: 14px 20px 18px;
+  padding-bottom: calc(18px + env(safe-area-inset-bottom));
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  border-top: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+/* ── Input wrapper (pill shape) ── */
+.chat-input-wrapper {
+  flex: 1;
+  min-width: 0;
+  width: 100%;
+  max-width: 1052px; /* message-list(1100) - 좌우 패딩과 정렬 */
+  margin: 0 auto;
+  display: flex;
+  align-items: flex-end;
+  background: var(--surface);
+  border: 1px solid var(--border-mid);
+  border-radius: 22px;
+  padding: 2px 4px 2px 14px;
+  transition: border-color var(--transition), box-shadow var(--transition);
+  box-shadow: var(--shadow-xs);
+}
+
+.chat-input-wrapper:focus-within {
+  border-color: rgba(0, 113, 227, 0.5);
+  box-shadow: 0 0 0 3px rgba(0, 113, 227, 0.12), var(--shadow-xs);
+}
+
+.chat-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 15px;
+  font-family: var(--font);
+  color: var(--text-primary);
+  resize: none;
+  line-height: 1.5;
+  padding: 8px 0;
+  max-height: 120px;
+  overflow-y: auto;
+  scrollbar-width: none;
+  letter-spacing: -0.01em;
+}
+
+.chat-input::-webkit-scrollbar { display: none; }
+
+.chat-input::placeholder {
+  color: var(--text-tertiary);
+}
+
+.chat-input:disabled {
+  opacity: 0.5;
+}
+
+/* ── Send button (circle icon button) ── */
+.send-button {
+  width: 34px;
+  height: 34px;
+  min-width: 34px;
+  border-radius: 50%;
+  border: none;
+  background: var(--accent);
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 3px;
+  transition: background var(--transition), transform var(--transition), opacity var(--transition), box-shadow var(--transition);
+  box-shadow: 0 2px 6px rgba(0, 113, 227, 0.35);
+  flex-shrink: 0;
+}
+
+.send-button svg {
+  width: 16px;
+  height: 16px;
+  fill: #fff;
+}
+
+.send-button:hover:not(:disabled) {
+  background: var(--accent-hover);
+  box-shadow: 0 3px 10px rgba(0, 113, 227, 0.45);
+  transform: scale(1.04);
+}
+
+.send-button:active:not(:disabled) {
+  background: var(--accent-active);
+  transform: scale(0.96);
+}
+
+.send-button:disabled {
+  background: #c7c7cc;
+  box-shadow: none;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* ════════════════════════════════════════
+   Responsive
+   ════════════════════════════════════════ */
+@media (max-width: 860px) {
+  .chat-input-container {
+    padding: 10px 12px 12px;
+    padding-bottom: calc(12px + env(safe-area-inset-bottom));
+  }
+}
+
+@media (max-width: 600px) {
+  /* iOS에서 포커스 시 자동 확대되지 않도록 16px 유지 */
+  .chat-input {
+    font-size: 16px;
+    max-height: 96px;
+  }
+
+  .send-button {
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+  }
+}
+
+/* 터치 기기에서는 hover 확대 효과 제거 */
+@media (hover: none) {
+  .send-button:hover:not(:disabled) {
+    transform: none;
+    box-shadow: 0 2px 6px rgba(0, 113, 227, 0.35);
+  }
+}

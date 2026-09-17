@@ -1,0 +1,23 @@
+<!-- 부모 페이지 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/main.css">
+    <title>todo 앱스</title>
+</head>
+<body>
+    <!-- <img src="/static/images/todo_img.jpg" alt="todo 이미지"> -->
+    <!-- 메뉴 -->
+    <main>
+        <a href="/"><p class="head_img"></p></a>
+        <h4>나의 성장을 위한 미션</h4>
+        <br>        
+        {% block content %}
+        <!-- 자식페이지에 채워야 하는 공간 -->
+        {% endblock content %}
+
+    </main>
+</body>
+</html>

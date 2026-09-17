@@ -1,0 +1,158 @@
+.chat-window {
+  flex: 1;
+  min-width: 0; /* flex 자식이 내용 때문에 넘치지 않도록 */
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  background: var(--bg);
+}
+
+/* ── Header ── */
+.chat-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 18px 28px;
+  padding-top: calc(18px + env(safe-area-inset-top));
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.chat-header-info {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+  flex: 1;
+}
+
+.chat-title {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.chat-subtitle {
+  font-size: 12px;
+  color: var(--text-tertiary);
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ── 햄버거 버튼 (모바일 전용) ── */
+.menu-button {
+  display: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--border-mid);
+  background: var(--surface);
+  color: var(--text-primary);
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background var(--transition), border-color var(--transition);
+}
+
+.menu-button svg { width: 18px; height: 18px; }
+
+.menu-button:active {
+  background: var(--bg);
+  transform: scale(0.96);
+}
+
+/* ── Reset Button ── */
+.reset-button {
+  padding: 7px 16px;
+  background: transparent;
+  color: var(--accent);
+  border: 1px solid rgba(0, 113, 227, 0.35);
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 500;
+  font-family: var(--font);
+  cursor: pointer;
+  letter-spacing: 0.01em;
+  transition: background var(--transition), color var(--transition), border-color var(--transition), box-shadow var(--transition);
+}
+
+.reset-button:hover {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+  box-shadow: 0 2px 8px rgba(0, 113, 227, 0.25);
+}
+
+.reset-button:active {
+  background: var(--accent-active);
+  transform: scale(0.98);
+}
+
+/* ── Error Banner ── */
+.error-banner {
+  background: rgba(255, 59, 48, 0.08);
+  color: #d70015;
+  font-size: 13px;
+  font-weight: 400;
+  padding: 10px 28px;
+  border-bottom: 1px solid rgba(255, 59, 48, 0.15);
+  letter-spacing: 0.01em;
+  flex-shrink: 0;
+  word-break: break-word;
+}
+
+/* ════════════════════════════════════════
+   Responsive
+   ════════════════════════════════════════ */
+
+/* 태블릿 세로 이하 — 햄버거 노출 */
+@media (max-width: 860px) {
+  .menu-button {
+    display: flex;
+  }
+
+  .chat-header {
+    padding: 12px 16px;
+    padding-top: calc(12px + env(safe-area-inset-top));
+  }
+
+  .error-banner {
+    padding: 10px 16px;
+  }
+}
+
+/* 모바일 — 부제 숨기고 초기화 버튼 축약 */
+@media (max-width: 600px) {
+  .chat-title {
+    font-size: 16px;
+  }
+
+  .chat-subtitle {
+    display: none;
+  }
+
+  .reset-button {
+    padding: 7px 12px;
+    font-size: 12px;
+  }
+}
+
+/* 초소형 화면 */
+@media (max-width: 380px) {
+  .reset-button {
+    padding: 6px 10px;
+    font-size: 11px;
+  }
+}

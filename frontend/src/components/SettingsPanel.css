@@ -1,0 +1,255 @@
+.settings-panel {
+  width: 260px;
+  min-width: 220px;
+  flex-shrink: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background: var(--sidebar-bg);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border-right: 1px solid var(--border);
+  padding: 28px 20px 24px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-mid) transparent;
+  -webkit-overflow-scrolling: touch;
+}
+
+.settings-panel::-webkit-scrollbar {
+  width: 4px;
+}
+.settings-panel::-webkit-scrollbar-thumb {
+  background: var(--border-mid);
+  border-radius: 4px;
+}
+
+.settings-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 20px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border);
+}
+
+.settings-title {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+
+/* 드로어 닫기 버튼 — 모바일에서만 노출 */
+.settings-close-button {
+  display: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid var(--border-mid);
+  background: var(--surface);
+  color: var(--text-secondary);
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background var(--transition), color var(--transition);
+}
+
+.settings-close-button svg { width: 14px; height: 14px; }
+
+.settings-close-button:hover {
+  background: var(--bg);
+  color: var(--text-primary);
+}
+
+.settings-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 22px;
+}
+
+.settings-label {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  letter-spacing: 0.01em;
+}
+
+.settings-value {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Select ── */
+.settings-select {
+  width: 100%;
+  padding: 9px 12px;
+  border: 1px solid var(--border-mid);
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  font-family: var(--font);
+  background: var(--surface);
+  color: var(--text-primary);
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23aeaeb2' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  padding-right: 30px;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.settings-select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(0, 113, 227, 0.15);
+}
+
+/* ── Textarea ── */
+.settings-textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--border-mid);
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  font-family: var(--font);
+  resize: vertical;
+  color: var(--text-primary);
+  background: var(--surface);
+  line-height: 1.5;
+  transition: border-color var(--transition), box-shadow var(--transition);
+  min-height: 88px;
+}
+
+.settings-textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(0, 113, 227, 0.15);
+}
+
+/* ── Range Slider ── */
+.settings-slider {
+  width: 100%;
+  height: 4px;
+  cursor: pointer;
+  accent-color: var(--accent);
+  appearance: none;
+  -webkit-appearance: none;
+  background: linear-gradient(
+    to right,
+    var(--accent) 0%,
+    var(--accent) var(--pct, 35%),
+    #d2d2d7 var(--pct, 35%),
+    #d2d2d7 100%
+  );
+  border-radius: 4px;
+  outline: none;
+}
+
+.settings-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 1.5px solid rgba(0, 0, 0, 0.15);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.18), 0 0 0 1.5px rgba(0, 113, 227, 0);
+  transition: box-shadow var(--transition);
+  cursor: pointer;
+}
+
+.settings-slider::-webkit-slider-thumb:hover {
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2), 0 0 0 3px rgba(0, 113, 227, 0.18);
+}
+
+.settings-slider::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 1.5px solid rgba(0, 0, 0, 0.15);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.18);
+  cursor: pointer;
+}
+
+/* ── Number Input ── */
+.settings-number {
+  width: 100%;
+  padding: 9px 12px;
+  border: 1px solid var(--border-mid);
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  font-family: var(--font);
+  color: var(--text-primary);
+  background: var(--surface);
+  transition: border-color var(--transition), box-shadow var(--transition);
+  font-variant-numeric: tabular-nums;
+}
+
+.settings-number:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(0, 113, 227, 0.15);
+}
+
+/* ════════════════════════════════════════
+   Responsive
+   ════════════════════════════════════════ */
+
+/* 좁은 데스크톱 / 가로 태블릿 — 폭만 축소 */
+@media (max-width: 1080px) {
+  .settings-panel {
+    width: 230px;
+    min-width: 230px;
+    padding: 24px 16px 20px;
+  }
+}
+
+/* 태블릿 세로 이하 — 오프캔버스 드로어로 전환 */
+@media (max-width: 860px) {
+  .settings-panel {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 50;
+    width: 280px;
+    min-width: 280px;
+    max-width: 84vw;
+    height: 100%;
+    height: 100dvh;
+    padding: 20px 18px calc(20px + env(safe-area-inset-bottom));
+    background: var(--surface);
+    box-shadow: var(--shadow-md);
+    transform: translateX(-100%);
+    visibility: hidden;
+    transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.28s;
+  }
+
+  .settings-panel.open {
+    transform: translateX(0);
+    visibility: visible;
+  }
+
+  .settings-close-button {
+    display: flex;
+  }
+}
+
+/* 모션 최소화 설정 존중 */
+@media (prefers-reduced-motion: reduce) {
+  .settings-panel {
+    transition: none;
+  }
+}
