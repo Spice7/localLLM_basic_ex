@@ -1,54 +1,49 @@
-from typing import Optional
-
 from fastapi import FastAPI
 from pydantic import BaseModel, HttpUrl
- 
-app = FastAPI()
+from typing import Optional
+import uvicorn  # fastapi 내장 웹서버
 
-# 요청 데이터 모델 정의
+app = FastAPI() # FastAPI 객체 생성
+
+
+# http://localhost:8000/users
+# body(JSON)로 username, password, avatar_url를 받아서 생성
 class UserCreate(BaseModel):
-    name: str
+    username: str
     password: str
-    avatar_url: Optional[HttpUrl] = None
+    avatar_url: HttpUrl
+    user_full_name: Optional[str] = None
 
-# 응답 데이터 모델 정의
+# DTO : 응답 전송 객체
 class UserResponse(BaseModel):
-    name: str
-    avatar_url: Optional[HttpUrl] = None
+    username: str
+    avatar_url: HttpUrl
 
+# http://localhost:8000/
 # http://127.0.0.1:8000/
-@app.get("/")
-def read_root():
-    word = "안녕"
-    # 비즈니스 로직 처리
-    # DB 조회
-    # AI와 통신한 결과
-    return {"Hello": word}
+@app.get("/") # GET 요청 처리
+async def read_root():
+    # 비즈니스 로직
+    data = "DB에서 데이터 읽어오기"
+    return {"message": data}     # JSON 응답 반환
 
-# 경로 매개 변수
-# http://127.0.0.1:8000/items/1
-# http://127.0.0.1:8000/items/2
-# http://127.0.0.1:8000/items/3
-# http://127.0.0.1:8000/items/5
-# http://127.0.0.1:8000/items/6
-@app.post("/items/{item_id}")
-def read_item(item_id:int, q: str | None = None):
-    print(f"item_id : {item_id}, q : {q}  ")
+# http://127.0.0.1:8000/items/
+@app.get("/items")
+def read_item():
+    item_id = 1
+    q = "사과"
     return {"item_id": item_id, "q": q}
 
-# @app.get("/items/{item_id}")
-# def read_item(item_id: int, q: str | None = None):
-#     return {"item_id": item_id, "q": q}
+@app.post("/user_info/", response_model=UserResponse)
+def create_user(user: UserCreate):
+    print(f" ▕  username: {user.username}, password: {user.password}, avatar_url: {user.avatar_url}, user_full_name: {user.user_full_name}")
 
-# 요청 및 응답 API
-@app.post("/user_info", response_model=UserResponse)
-def get_user(user: UserCreate):
-    # 비즈니스 로직 처리
-    # DB 저장 처리
-    print("user: ", user)
-    user_info = UserResponse(
-        name=user.name,
-        avatar_url=str(user.avatar_url) if user.avatar_url else None
-    )
-    # Pydantic model 객체를 JSON으로 직렬화해서 응답함.
+    user_info = UserResponse(username=user.username, avatar_url=user.avatar_url)
     return user_info
+
+
+# uv run fastapi dev
+# uv run main.py
+if __name__ == "__main__":
+    # uvicorn.run("현재 파일이름: FastAPi 객체 식별자")
+    uvicorn.run("main:app", reload=True)

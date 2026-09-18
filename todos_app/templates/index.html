@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+    {% block content %}
+    <main>
+        <h4>나를 성장시키는 메모</h4>
+        <br>
+        <form action="/add" method="post">  <!-- method= get은 생략 가능? -->
+            <!-- <textarea name="task" rows="5" placeholder="Enter your task" id="task" required></textarea> -->
+            <textarea name="task" rows="5" placeholder="Enter your task" id="task"></textarea>
+            <button type="submit" id="add_task">
+                Add
+            </button>
+        </form>
+        
+	    <br>
+        
+	    <div>
+            <h2>Tasks</h2>
+            {% for todo in todos %}
+            <div class="task{% if todo.completed %} task-done{% endif %}">
+                {% if todo.completed %}
+                <strike>{{ todo.task }}</strike>
+                {% else %}
+                    {{ todo.task }}
+                {% endif %}
+	            <div class="task-actions">
+                    <a href="/edit/{{ todo.id }}" class="todo-btn edit-btn">수정</a>
+	                <form action="/delete/{{ todo.id }}" method="post">
+                        <button type="submit" class="todo-btn delete-btn">삭제</button>
+                    </form>
+	            </div>
+	        </div>
+            {% endfor %}
+	    </div>
+    </main>
+    {% endblock content %}

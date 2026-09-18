@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <main>
+        <h4>할 일 수정</h4>
+        <form action="/edit/{{todo.id}}" method="post">
+            <textarea name="task" rows="5">{{todo.task}}</textarea>
+            <label for="completed">Done?</label>
+            <input type="checkbox" name="completed" {% if todo.completed %}checked{% endif %}>
+
+            <button type="submit">Save</button>
+        </form>
+        <!-- 미션: 아래쪽에 데이터 목록이 보이도록 만들기 -->
+        <div>
+            <h2>Task</h2>
+            {% for todo in todos %}
+            <div class="task{% if todo.completed %} task-done{% endif %}">
+                {% if todo.completed %}
+                    <strike>{{ todo.task }}</strike>
+                {% else %}
+                    {{ todo.task }}
+                {% endif %}
+                <div class="task-actions">
+                    <a href="/edit/{{ todo.id }}" class="todo-btn edit-btn">수정</a>
+                    <form action="/delete/{{ todo.id }}" method="post">
+                        <button type="submit" class="todo-btn delete-btn">삭제</button>
+                    </form>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </main>
+{% endblock content %}

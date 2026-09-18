@@ -1,0 +1,215 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body{
+  font-family: 'Jua', 'Roboto', sans-serif;
+  background: #fff8ec;
+  color: #4a3a2c;
+  padding-bottom: 40px;
+}
+
+/* ---------- 헤더 / 히어로 배너 ---------- */
+header.hero{
+  position: relative;
+  width: 100%;
+  min-height: 220px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 28px 16px 40px;
+  background-image:
+    linear-gradient(180deg, rgba(30, 40, 10, 0.2) 0%, rgba(30, 40, 10, 0.55) 100%),
+    url("../images/maple.jpg");
+  background-size: cover;
+  background-position: center 35%;
+  border-radius: 0 0 28px 28px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+}
+
+header.hero .logo-badge{
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid #fff8ec;
+  background: #fff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  margin-bottom: 10px;
+}
+
+header.hero .logo-badge img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+header.hero h1{
+  color: #fff;
+  font-size: 28px;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.55);
+  letter-spacing: 1px;
+}
+
+header.hero .tagline{
+  margin-top: 6px;
+  color: #fff8ec;
+  font-size: 14px;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.45);
+}
+
+/* ---------- 컨텐츠 카드 ---------- */
+main{
+  width: 100%;
+  max-width: 520px;
+  margin: -28px auto 0;
+  padding: 24px 20px 28px;
+  background: #fffdf6;
+  border: 2px solid #f6d7a3;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(139, 94, 60, 0.18);
+  position: relative;
+  z-index: 1;
+}
+
+main h4, main h2{
+  color: #8b5e3c;
+  margin-bottom: 14px;
+  font-size: 18px;
+}
+
+main h2{
+  margin-top: 24px;
+}
+
+/* ---------- 입력 폼 ---------- */
+textarea{
+  width: 100%;
+  min-height: 90px;
+  border: 2px solid #f6d7a3;
+  border-radius: 14px;
+  padding: 12px;
+  resize: none;
+  font-family: inherit;
+  font-size: 15px;
+  background: #fffaf0;
+  color: #4a3a2c;
+}
+
+textarea:focus{
+  outline: none;
+  border-color: #f2994a;
+}
+
+label[for="completed"]{
+  display: inline-block;
+  margin: 10px 0;
+  font-size: 15px;
+  color: #8b5e3c;
+}
+
+input[type="checkbox"]{
+  width: 18px;
+  height: 18px;
+  margin-right: 6px;
+  vertical-align: middle;
+  accent-color: #f2994a;
+}
+
+button{
+  width: 100%;
+  height: 44px;
+  border: none;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #ffb459, #f2994a);
+  color: #fff;
+  font-family: inherit;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0 4px 0 #c9761f;
+  transition: transform .12s ease, box-shadow .12s ease;
+  margin-top: 10px;
+}
+
+button:hover{
+  transform: translateY(-2px);
+}
+
+button:active{
+  transform: translateY(1px);
+  box-shadow: 0 2px 0 #c9761f;
+}
+
+/* ---------- 할 일 목록 ---------- */
+.task{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 12px 14px;
+  margin-bottom: 10px;
+  background: #fff3d6;
+  border: 2px solid #f6d7a3;
+  border-left: 6px solid #eb5757;
+  border-radius: 14px;
+  transition: opacity .15s ease;
+}
+
+.task.task-done{
+  border-left-color: #6fbf73;
+  background: #eef8ea;
+  opacity: .75;
+}
+
+.task strike{
+  color: #7c8f74;
+}
+
+.task-actions{
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.task-actions form{
+  margin: 0;
+  padding: 0;
+}
+
+.todo-btn{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  margin: 0;
+  padding: 0 14px;
+  border: none;
+  border-radius: 999px;
+  font-family: inherit;
+  font-size: 13px;
+  line-height: 1;
+  text-decoration: none;
+  cursor: pointer;
+  color: #fff;
+  box-shadow: 0 3px 0 rgba(0, 0, 0, 0.15);
+  transition: transform .12s ease;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.todo-btn:hover{
+  transform: translateY(-1px);
+}
+
+.todo-btn.edit-btn{
+  background: #6fb7e0;
+}
+
+.todo-btn.delete-btn{
+  background: #eb5757;
+}
